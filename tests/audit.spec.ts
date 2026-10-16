@@ -139,6 +139,14 @@ for (const theme of ['dark', 'light']) {
       expect(result.violations).toEqual([]);
       await page.screenshot({ path: info.outputPath(`${language}-${theme}.png`), fullPage: true });
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      for (const button of await page.locator('.case-study-link').all()) {
+        await button.click();
+        await expect(page.locator('dialog')).toBeVisible();
+        const dialogResult = await new AxeBuilder({ page }).include('dialog').withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+        expect(dialogResult.violations).toEqual([]);
+        await page.keyboard.press('Escape');
+        await expect(page.locator('dialog')).toHaveCount(0);
+      }
     }
   });
 }

@@ -108,6 +108,9 @@ h3, h4 {
   border-radius: 3px;
 }
 
+/* Programmatic intro/skip-link destination; interactive controls keep their focus rings. */
+#main:focus { outline: none; }
+
 .container {
   width: min(1240px, calc(100% - 100px));
   margin: auto;

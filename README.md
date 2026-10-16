@@ -82,3 +82,24 @@ Build success is not a Lighthouse score. Measure performance, accessibility, bes
 ## License
 
 The repository's existing MIT license is preserved in `LICENSE`. The portfolio is an original implementation created within the existing MasterPortfolio repository.
+
+### Audit regression checks
+
+After `npm run build`, run `npm run test:audit` with Google Chrome installed
+(or adjust the browser channel in `playwright.config.ts`). The suite exercises
+mobile and desktop intro/skip/replay, reduced motion, dialogs and focus return,
+EN/FR preferences, both themes, navigation, contact validation, CV downloads,
+responsive widths, contrast, and the configured security headers. Vite preview
+itself does not apply `vercel.json`; the security test adds those response headers
+locally and checks the inline-script hashes against the actual build.
+
+`vercel.json` enforces anti-framing, MIME sniffing protection, referrer and
+permissions restrictions, COOP, and a limited CSP for objects, base URLs, and
+framing. The broader resource CSP and Trusted Types remain **report-only**.
+Inline theme setup and JSON-LD have explicit SHA-256 hashes. When changing those
+scripts, regenerate their hashes and run the regression checks. Inline styles
+remain permitted because React/Motion use them. No reporting endpoint is
+configured; violations are currently visible in the browser console only.
+
+See [the October 2026 audit report](docs/portfolio-audit.md) for measurements,
+limitations, and deployment verification steps.
