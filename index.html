@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#280B0F" />
+    <meta name="color-scheme" content="dark light" />
+    <title>El Mostafa Belayd | Junior Full-Stack Developer — React &amp; Laravel</title>
+    <meta name="description" content="Explore the portfolio of El Mostafa Belayd, a Junior Full-Stack Developer in Morocco specializing in React.js, Laravel, REST APIs, and modern web applications." />
+    <meta name="author" content="El Mostafa Belayd" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="El Mostafa Belayd — Portfolio" />
+    <meta property="og:title" content="El Mostafa Belayd | Junior Full-Stack Developer — React &amp; Laravel" />
+    <meta property="og:description" content="React interfaces. Laravel APIs. Complete web experiences. Explore the work of El Mostafa Belayd, a Junior Full-Stack Developer in Fès, Morocco." />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+    <meta property="og:image" content="./social-card.svg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="El Mostafa Belayd — Junior Full-Stack Developer. React, Laravel, and REST APIs. Fès, Morocco." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="El Mostafa Belayd | Junior Full-Stack Developer" />
+    <meta name="twitter:description" content="React interfaces. Laravel APIs. Complete web experiences. A developer portfolio from Fès, Morocco." />
+    <meta name="twitter:image" content="./social-card.svg" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <style>
+      :root { color-scheme: dark; background: #280B0F; color: #FAF5EF; }
+      :root[data-theme="light"] { color-scheme: light; background: #FAF6F0; color: #280B0F; }
+      body { margin: 0; }
+      noscript { display: block; padding: 2rem; font: 1rem/1.7 system-ui, sans-serif; }
+      noscript a { color: inherit; }
+    </style>
+    <script>
+      (() => {
+        let theme = 'dark';
+        try {
+          const saved = localStorage.getItem('em-theme');
+          if (saved === 'light' || saved === 'dark') theme = saved;
+        } catch (_) { /* A restricted storage setting keeps the default theme. */ }
+        document.documentElement.dataset.theme = theme;
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', theme === 'light' ? '#FAF6F0' : '#280B0F');
+      })();
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "El Mostafa Belayd",
+        "jobTitle": "Junior Full-Stack Web Developer",
+        "description": "Junior Full-Stack Web Developer based in Fès, Morocco, working with React.js, Laravel, and RESTful APIs.",
+        "email": "mailto:elmostafabelayd@gmail.com",
+        "telephone": "+212688835120",
+        "homeLocation": {
+          "@type": "Place",
+          "name": "Fès, Morocco"
+        },
+        "knowsLanguage": ["Arabic", "French", "English"],
+        "knowsAbout": ["React.js", "JavaScript", "PHP", "Laravel", "RESTful APIs", "MySQL", "C programming", "Linux", "ESP32", "IoT"],
+        "sameAs": [
+          "https://github.com/elmostafabelayed",
+          "https://www.linkedin.com/in/el-mostafa-belayd-48861931"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <h1>El Mostafa Belayd</h1>
+      <p>Junior Full-Stack Web Developer in Fès, Morocco. React.js, Laravel, REST APIs, and modern web applications.</p>
+      <p>Enable JavaScript to explore the interactive portfolio, or <a href="mailto:elmostafabelayd@gmail.com">send an email</a> to connect.</p>
+    </noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

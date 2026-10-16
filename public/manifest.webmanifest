@@ -1,0 +1,14 @@
+{
+  "name": "El Mostafa Belayd — Developer Portfolio",
+  "short_name": "EM. Portfolio",
+  "description": "Junior Full-Stack Web Developer in Fès, Morocco. React, Laravel, and REST APIs.",
+  "lang": "en",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#080B14",
+  "theme_color": "#080B14",
+  "icons": [
+    { "src": "./favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
