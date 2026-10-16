@@ -9,6 +9,7 @@ import { ProjectVisual } from './components/ProjectVisual';
 import { ProjectDialog } from './components/ProjectDialog';
 import { ContactSection } from './components/ContactForm';
 import { PortfolioIntro } from './components/PortfolioIntro';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 const skillIcons=[Monitor,Braces,Database,Terminal,Cpu,Wrench];
 const qualityIcons=[Users,Puzzle,Code2,Layers,CheckCheck,BrainCircuit,BookOpen];
@@ -53,5 +54,6 @@ export default function App(){
  </main><footer aria-hidden={introActive}><div className="container"><div className="footer-main"><a className="logo" href="#home" aria-label="El Mostafa Belayd">EM<span>.</span></a><div className="footer-identity"><strong>El Mostafa Belayd</strong><span>{t.footer.role} <i>·</i> {language==='fr'?'Fès, Maroc':'Fès, Morocco'}</span></div><nav aria-label={language==='en'?'Footer navigation':'Navigation de pied de page'}><a href="#about">{t.nav[1].label}</a><a href="#projects">{t.nav.find(n=>n.id==='projects')?.label}</a><a href="#contact">{t.nav.find(n=>n.id==='contact')?.label}</a></nav></div><div className="footer-bottom"><span>© 2026 El Mostafa Belayd. {t.footer.rights}</span><span>{t.footer.credit}<Code2 size={14}/></span></div></div></footer>
  {showTop&&<a className="back-top" href="#home" aria-label={t.ui.backTop}><ArrowUp size={19}/></a>}
  <ProjectDialog projectId={projectId} language={language} onClose={closeProject}/>
+ <SpeedInsights />
  </MotionConfig>;
 }
