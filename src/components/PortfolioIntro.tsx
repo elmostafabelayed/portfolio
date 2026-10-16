@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, useReducedMotion } from 'motion/react';
+import { useReducedMotion } from 'motion/react';
+import * as m from 'motion/react-m';
 import { ArrowRight } from 'lucide-react';
 import { content, type Language } from '../data/content';
 import '../styles/portfolio-intro.css';
@@ -7,15 +8,16 @@ import '../styles/portfolio-intro.css';
 interface PortfolioIntroProps {
   language: Language;
   onComplete: () => void;
-  forceReplay?: boolean;
 }
 
-export function PortfolioIntro({ language, onComplete, forceReplay = false }: PortfolioIntroProps) {
+export function PortfolioIntro({ language, onComplete }: PortfolioIntroProps) {
   const reducedMotion = useReducedMotion();
   const t = content[language];
   const [curtainOpen, setCurtainOpen] = useState(false);
   const [contentFade, setContentFade] = useState(false);
   const [active, setActive] = useState(true);
+  const skipButton = useRef<HTMLButtonElement>(null);
+  const skipping = useRef(false);
   const timersRef = useRef<number[]>([]);
 
   // Smooth custom easing
@@ -31,6 +33,8 @@ export function PortfolioIntro({ language, onComplete, forceReplay = false }: Po
   };
 
   const handleSkip = () => {
+    if (skipping.current) return;
+    skipping.current = true;
     // Clear scheduled phase timers
     timersRef.current.forEach(clearTimeout);
     timersRef.current = [];
@@ -46,12 +50,14 @@ export function PortfolioIntro({ language, onComplete, forceReplay = false }: Po
 
   useEffect(() => {
     // If reduced motion is requested, immediately skip
-    if (reducedMotion && !forceReplay) {
+    if (reducedMotion) {
       markCompleted();
       setActive(false);
       onComplete();
       return;
     }
+
+    skipButton.current?.focus({ preventScroll: true });
 
     // Phase 4 -> Phase 5: Fade center monogram content and open editorial curtain panels
     const fadeTimer = window.setTimeout(() => {
@@ -83,7 +89,7 @@ export function PortfolioIntro({ language, onComplete, forceReplay = false }: Po
       timersRef.current.forEach(clearTimeout);
       timersRef.current = [];
     };
-  }, [reducedMotion, forceReplay, onComplete]);
+  }, [reducedMotion, onComplete]);
 
   if (!active) return null;
 
@@ -91,11 +97,12 @@ export function PortfolioIntro({ language, onComplete, forceReplay = false }: Po
     <div
       className="portfolio-intro-root"
       role="dialog"
-      aria-label="Portfolio Introduction"
+      aria-label={language === 'fr' ? 'Introduction du portfolio' : 'Portfolio Introduction'}
+      onKeyDown={event => { if (event.key === 'Tab') { event.preventDefault(); skipButton.current?.focus(); } }}
       aria-modal="true"
     >
       {/* Upper Editorial Curtain Panel */}
-      <motion.div
+      <m.div
         className="intro-curtain intro-curtain-top"
         initial={{ y: '0%' }}
         animate={{ y: curtainOpen ? '-100%' : '0%' }}
@@ -103,7 +110,7 @@ export function PortfolioIntro({ language, onComplete, forceReplay = false }: Po
       />
 
       {/* Lower Editorial Curtain Panel */}
-      <motion.div
+      <m.div
         className="intro-curtain intro-curtain-bottom"
         initial={{ y: '0%' }}
         animate={{ y: curtainOpen ? '100%' : '0%' }}
@@ -114,7 +121,8 @@ export function PortfolioIntro({ language, onComplete, forceReplay = false }: Po
       <div className="intro-noise-overlay" aria-hidden="true" />
 
       {/* Skip Intro button */}
-      <motion.button
+      <m.button
+        ref={skipButton}
         type="button"
         className="intro-skip-btn"
         onClick={handleSkip}
@@ -125,10 +133,10 @@ export function PortfolioIntro({ language, onComplete, forceReplay = false }: Po
       >
         <span>{t.intro.skip}</span>
         <ArrowRight size={13} className="intro-skip-arrow" />
-      </motion.button>
+      </m.button>
 
       {/* Phase 04: Signature Horizon Dividing Line */}
-      <motion.div
+      <m.div
         className="intro-signature-line"
         aria-hidden="true"
         initial={{ scaleX: 0, opacity: 0 }}
@@ -144,7 +152,7 @@ export function PortfolioIntro({ language, onComplete, forceReplay = false }: Po
       />
 
       {/* Centerpiece Content */}
-      <motion.div
+      <m.div
         className="intro-center-content"
         animate={{
           opacity: contentFade ? 0 : 1,
@@ -153,11 +161,12 @@ export function PortfolioIntro({ language, onComplete, forceReplay = false }: Po
         transition={{ duration: 0.35, ease: easeOutEditorial }}
       >
         {/* Phase 01: Initial First Detail Line */}
-        <motion.div
+        <m.div
           className="intro-arrival-line"
-          initial={{ width: 0, opacity: 0 }}
+          style={{ y: '-50%' }}
+          initial={{ scaleX: 0, opacity: 0 }}
           animate={{
-            width: [0, 32, 32, 0],
+            scaleX: [0, 1, 1, 0],
             opacity: [0, 1, 0.9, 0],
           }}
           transition={{
@@ -177,7 +186,7 @@ export function PortfolioIntro({ language, onComplete, forceReplay = false }: Po
             aria-hidden="true"
           >
             {/* Letter E - Vertical Stem */}
-            <motion.path
+            <m.path
               d="M 17 12 L 17 58"
               className="intro-monogram-path"
               initial={{ pathLength: 0, opacity: 0 }}
@@ -185,7 +194,7 @@ export function PortfolioIntro({ language, onComplete, forceReplay = false }: Po
               transition={{ delay: 0.25, duration: 0.36, ease: easeLuxury }}
             />
             {/* Letter E - Top Arm */}
-            <motion.path
+            <m.path
               d="M 17 13 L 53 13"
               className="intro-monogram-path"
               initial={{ pathLength: 0, opacity: 0 }}
@@ -193,7 +202,7 @@ export function PortfolioIntro({ language, onComplete, forceReplay = false }: Po
               transition={{ delay: 0.42, duration: 0.26, ease: easeLuxury }}
             />
             {/* Letter E - Middle Arm */}
-            <motion.path
+            <m.path
               d="M 17 35 L 41 35"
               className="intro-monogram-path"
               initial={{ pathLength: 0, opacity: 0 }}
@@ -201,7 +210,7 @@ export function PortfolioIntro({ language, onComplete, forceReplay = false }: Po
               transition={{ delay: 0.48, duration: 0.24, ease: easeLuxury }}
             />
             {/* Letter E - Bottom Arm */}
-            <motion.path
+            <m.path
               d="M 17 57 L 53 57"
               className="intro-monogram-path"
               initial={{ pathLength: 0, opacity: 0 }}
@@ -210,7 +219,7 @@ export function PortfolioIntro({ language, onComplete, forceReplay = false }: Po
             />
 
             {/* Letter M - Left Pillar */}
-            <motion.path
+            <m.path
               d="M 69 58 L 69 12"
               className="intro-monogram-path"
               initial={{ pathLength: 0, opacity: 0 }}
@@ -218,7 +227,7 @@ export function PortfolioIntro({ language, onComplete, forceReplay = false }: Po
               transition={{ delay: 0.38, duration: 0.32, ease: easeLuxury }}
             />
             {/* Letter M - Central Chevron */}
-            <motion.path
+            <m.path
               d="M 69 12 L 94 45 L 119 12"
               className="intro-monogram-path"
               initial={{ pathLength: 0, opacity: 0 }}
@@ -226,7 +235,7 @@ export function PortfolioIntro({ language, onComplete, forceReplay = false }: Po
               transition={{ delay: 0.52, duration: 0.34, ease: easeLuxury }}
             />
             {/* Letter M - Right Pillar */}
-            <motion.path
+            <m.path
               d="M 119 12 L 119 58"
               className="intro-monogram-path"
               initial={{ pathLength: 0, opacity: 0 }}
@@ -235,7 +244,7 @@ export function PortfolioIntro({ language, onComplete, forceReplay = false }: Po
             />
 
             {/* Signature Dot (Rubine #8D3A3C) */}
-            <motion.circle
+            <m.circle
               cx="135"
               cy="54"
               r="4.5"
@@ -254,39 +263,40 @@ export function PortfolioIntro({ language, onComplete, forceReplay = false }: Po
         {/* Phase 03: Identity Typography with Mask Reveal */}
         <div className="intro-typography-wrap">
           <div className="intro-text-mask">
-            <motion.h2
+            <m.h2
               className="intro-name"
               initial={{ y: 22, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.76, duration: 0.46, ease: easeOutEditorial }}
             >
               {t.intro.name}
-            </motion.h2>
+            </m.h2>
           </div>
 
           <div className="intro-text-mask intro-role-mask">
-            <motion.p
+            <m.p
               className="intro-role"
               initial={{ y: 14, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.92, duration: 0.42, ease: easeOutEditorial }}
             >
               {t.intro.role}
-            </motion.p>
+            </m.p>
           </div>
         </div>
-      </motion.div>
+      </m.div>
 
       {/* Editorial Identifier */}
-      <motion.div
+      <m.div
         className="intro-corner-brand"
+        aria-hidden="true"
         initial={{ opacity: 0 }}
         animate={{ opacity: contentFade ? 0 : 0.6 }}
         transition={{ delay: 0.88, duration: 0.4 }}
       >
         <span />
         <span>PORTFOLIO / 2026</span>
-      </motion.div>
+      </m.div>
     </div>
   );
 }

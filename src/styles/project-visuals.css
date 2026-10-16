@@ -28,7 +28,7 @@
   letter-spacing: .02em;
   font-family: 'JetBrains Mono', monospace;
 }
-.pv-browser > span:nth-child(2) { opacity: .65; }
+.pv-browser > span:nth-child(2) { opacity: 1; }
 .pv-browser > svg { width: 1.6cqw; }
 .pv-window-dots { display: flex; gap: .42cqw; }
 .pv-window-dots i {
@@ -82,7 +82,7 @@
 }
 .pv-jobsy .pv-browser {
   background: #F4EDE3;
-  color: #7B694E;
+  color: #6B5943;
   border-bottom: 1px solid #E8DFD1;
 }
 .pv-jobsy-layout {
@@ -174,7 +174,7 @@
   align-items: center;
   justify-content: space-between;
   font-size: .9cqw;
-  color: #7B694E;
+  color: #6B5943;
 }
 .pv-jobsy-top > div { display: flex; align-items: center; gap: 1.2cqw; }
 .pv-jobsy-top b { color: #280B0F; }
@@ -209,7 +209,7 @@
 .pv-jobsy-welcome p {
   margin-top: .4cqw;
   font-size: .95cqw;
-  color: #7B694E;
+  color: #6B5943;
 }
 .pv-purple-button {
   display: flex;
@@ -238,7 +238,7 @@
   padding: 1.1cqw 1.3cqw;
 }
 .pv-jobsy-stats > div > span {
-  color: #7B694E;
+  color: #6B5943;
   font-size: .88cqw;
 }
 .pv-jobsy-stats strong {
@@ -273,7 +273,7 @@
   align-items: center;
   gap: .4cqw;
   font-size: .82cqw;
-  color: #7B694E;
+  color: #6B5943;
 }
 .pv-row-heading > span svg { height: 1.1cqw; width: 1.1cqw; }
 .pv-project-row {
@@ -298,7 +298,7 @@
 }
 .pv-project-symbol-peach {
   background: rgba(198, 179, 154, 0.22);
-  color: #7B694E;
+  color: #6B5943;
 }
 .pv-project-symbol svg { width: 1.7cqw; height: 1.7cqw; }
 .pv-project-row > div { min-width: 0; }
@@ -311,7 +311,7 @@
 .pv-project-row small {
   display: block;
   font-size: .82cqw;
-  color: #7B694E;
+  color: #6B5943;
   margin-top: .2cqw;
 }
 .pv-project-tag {
@@ -320,7 +320,7 @@
   border: 1px solid #E8DFD1;
   border-radius: .3cqw;
   padding: .3cqw .5cqw;
-  color: #7B694E;
+  color: #6B5943;
   font-family: 'JetBrains Mono', monospace;
 }
 .pv-open-pill {
@@ -352,7 +352,7 @@
   align-items: center;
   gap: .5cqw;
   font-size: .72cqw;
-  color: #7B694E;
+  color: #6B5943;
 }
 .pv-offer-track i {
   position: relative;
@@ -725,7 +725,7 @@
 }
 .pv-notes .pv-browser {
   background: #F3EBE0;
-  color: #7B694E;
+  color: #6B5943;
   border-bottom: 1px solid #E6DCCD;
 }
 .pv-notes-layout {
@@ -768,7 +768,7 @@
   display: flex;
   align-items: center;
   gap: .65cqw;
-  color: #7B694E;
+  color: #6B5943;
   padding: .9cqw .8cqw;
   font-size: .9cqw;
   white-space: nowrap;
@@ -785,7 +785,7 @@
   font-size: .65cqw;
   text-transform: uppercase;
   letter-spacing: .12em;
-  color: #8C7B65;
+  color: #6B5943;
   padding-left: .8cqw;
   margin: 2cqw 0 .4cqw;
   font-family: 'JetBrains Mono', monospace;
@@ -804,7 +804,7 @@
   gap: .6cqw;
   align-items: center;
   font-size: .75cqw;
-  color: #8C7B65;
+  color: #6B5943;
   padding-left: .7cqw;
 }
 .pv-notes-help svg { height: 1.25cqw; width: 1.25cqw; }
@@ -814,7 +814,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #7B694E;
+  color: #6B5943;
   font-size: .8cqw;
 }
 .pv-notes-toolbar > span:first-child { display: flex; align-items: center; gap: .7cqw; }
@@ -841,7 +841,7 @@
 }
 .pv-notes-heading p {
   font-size: .88cqw;
-  color: #7B694E;
+  color: #6B5943;
   margin-top: .5cqw;
 }
 .pv-note-filters {
@@ -851,7 +851,7 @@
   margin-bottom: 1.4cqw;
   gap: 1cqw;
   font-size: .8cqw;
-  color: #7B694E;
+  color: #6B5943;
 }
 .pv-note-filters > div { display: flex; gap: .4cqw; }
 .pv-note-filters > div > span {
@@ -863,7 +863,7 @@
   color: #280B0F;
   font-weight: 600;
 }
-.pv-note-filters > svg { margin-left: auto; height: 1.2cqw; width: 1.2cqw; color: #7B694E; }
+.pv-note-filters > svg { margin-left: auto; height: 1.2cqw; width: 1.2cqw; color: #6B5943; }
 .pv-new-note {
   display: flex;
   align-items: center;
@@ -913,7 +913,7 @@
   align-items: center;
   justify-content: space-between;
   font-size: .65cqw;
-  color: #7B694E;
+  color: #6B5943;
   font-family: 'JetBrains Mono', monospace;
   text-transform: uppercase;
 }
@@ -935,7 +935,7 @@
 }
 .pv-note > small {
   font-size: .6cqw;
-  color: #7B694E;
+  color: #6B5943;
   display: flex;
   justify-content: space-between;
   align-items: center;

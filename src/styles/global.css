@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@import "tailwindcss" source(none);
+@source "../*.tsx";
+@source "../components/*.tsx";
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 :root {
@@ -49,7 +51,7 @@
   --text: #280B0F;
   --text-heading: #1F070A;
   --muted: #6B5943;
-  --soft: #8C7B65;
+  --soft: #756148;
   --border: rgba(123, 105, 78, 0.18);
   --border-strong: rgba(123, 105, 78, 0.34);
   --border-accent: rgba(141, 58, 60, 0.35);
@@ -170,6 +172,7 @@ h3, h4 {
   background: linear-gradient(90deg, #8D3A3C 0%, #C6B39A 70%, #FAF5EF 100%);
   z-index: 100;
   transform-origin: left;
+  transform: scaleX(0);
   pointer-events: none;
 }
 
@@ -1153,7 +1156,7 @@ h3, h4 {
 .value-index {
   font-family: 'JetBrains Mono', monospace;
   font-size: 9.5px;
-  color: var(--primary);
+  color: var(--accent);
   font-weight: 700;
 }
 .values h3 {
@@ -1269,7 +1272,7 @@ h3, h4 {
   background: rgba(141, 58, 60, 0.18);
 }
 .skill-badges svg, .skill-badges .letter-icon {
-  color: var(--camel);
+  color: var(--accent);
 }
 .stack-note {
   display: flex;
@@ -1282,7 +1285,7 @@ h3, h4 {
 }
 .stack-note>.mono {
   margin-left: auto;
-  color: var(--primary);
+  color: var(--accent);
   font-size: 18px;
 }
 
@@ -1383,7 +1386,7 @@ h3, h4 {
   letter-spacing: 1.5px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 9.5px;
-  color: var(--primary);
+  color: var(--accent);
   font-weight: 600;
 }
 .project-symbol {
@@ -1527,7 +1530,7 @@ h3, h4 {
   padding: 6px 10px;
   border-radius: 5px;
   font-size: 9.5px;
-  color: var(--camel);
+  color: var(--accent);
   margin-left: auto;
   white-space: nowrap;
 }
@@ -1538,7 +1541,7 @@ h3, h4 {
 }
 .duration {
   font-size: 10.5px;
-  color: var(--primary);
+  color: var(--accent);
   display: block;
   margin-top: 6px;
   font-family: 'JetBrains Mono', monospace;
@@ -1607,7 +1610,7 @@ h3, h4 {
 }
 .education-date {
   font-family: 'JetBrains Mono', monospace;
-  color: var(--primary);
+  color: var(--accent);
   font-size: 10.5px;
   font-weight: 600;
 }
@@ -1631,7 +1634,7 @@ h3, h4 {
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 5px 9px;
-  color: var(--camel);
+  color: var(--accent);
   font-family: 'JetBrains Mono', monospace;
 }
 .education-entry p {
@@ -2534,3 +2537,6 @@ footer {
   .hero-section:before { display: none; }
   .hero-visual .editor-window { transform: rotateY(-9deg) rotateX(5deg) rotateZ(-2deg); }
 }
+
+/* Reserve the illustration’s exact aspect ratio while its chunk loads nearby. */
+.deferred-project-visual, .project-visual-placeholder { width: 100%; aspect-ratio: 1.65; }
